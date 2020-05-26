@@ -7,3 +7,9 @@ Output: hELLO -6lol5
 
 Input: "2S 6 du5d4e"
 Output: 2s 6 DU4D5E
+
+You can Kindly look it up here: https://alaye003.github.io/algorithmTest/index
+
+Kindly review and give feedbacks especially when there's an error
+
+Thanks
