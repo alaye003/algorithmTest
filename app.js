@@ -1,12 +1,19 @@
 document.getElementById('form-string').addEventListener('submit', getResult);
 
 function getResult (e){
-  let string = document.getElementById('string').value;
-  document.getElementById('output').innerHTML = SwapII(string);
+  let string = document.getElementById('string');
+  string = string.value;
+  document.getElementById('input-value').innerHTML = '<b>Input:</b> ' + string;
+  document.getElementById('output-value').innerHTML = '<b>Output:</b> ' + SwapII(string);
+
+  clearField();
   
   e.preventDefault();
 }
 
+function clearField() {
+  document.getElementById('string').value = '';
+}
 
 function SwapII(str){
 
@@ -34,29 +41,38 @@ function SwapII(str){
   
   value.forEach((arrayElement, index)=>{
     for(let i = 0; i < arrayElement.length; i++){
-      
+      // console.log(index)
       if(isNaN(arrayElement[i])){ // character
         result += arrayElement[i];
       }else{ // is a number or whitespace 
         if(arrayElement[i] !== '' && arrayElement[i] !== ' '){
-          if(firstValue === 0){
-            firstValue = arrayElement[i];
-            secondValue = 0;           
-          }else{      
+          // check if the next item is a character          
+          if(isNaN(arrayElement[i+1]) && firstValue === 0){ //next index is character
+            console.log((arrayElement[i+1]))
+            // assign element to first value
+              firstValue = arrayElement[i];
+              // get index of item
+              firstIndex = i;
+              console.log(firstIndex);
+              secondValue = 0; 
+          }
+          if(isNaN(arrayElement[i-1])){
+            console.log(isNaN(arrayElement[i-1]))
             secondValue = arrayElement[i];
-          }      
-          result += arrayElement[i];
+            secondIndex = i;
+            console.log(secondIndex);
+          }
+          
+            result += arrayElement[i];
         }        
       }
     } // end for loop
       
       if(secondValue === 0){
       }else{
-        replaced = result.replace(secondValue, firstValue);
-        
-        // replace first occurance of first value  with first value (FROM 4hello4: it gives 6hello4)
-        replaced = replaced.replace(firstValue, secondValue);
-        
+
+        replaced = replaceCharacters(result, firstIndex, secondValue);
+        replaced = replaceCharacters(replaced, secondIndex, firstValue);
         result = replaced;
       }
 
@@ -74,7 +90,6 @@ function SwapII(str){
   
 } // end of SwapII
 
-// SwapII('2S 6 du5d4e');
 // console.log(SwapII('6hello4 -8World 6sf afa7 5 4'));
 
 function swapCase(character){
@@ -86,3 +101,12 @@ function swapCase(character){
     return character;
   }  
 }
+
+function replaceCharacters(str, index, replacement){
+  return str.substr(0, index) + replacement + str.substr(index+1);
+}
+
+// let r =(replaceCharacters('H4ell6o', 1, '6'));
+// console.log(r);
+// r = (replaceCharacters(r, 5, '4'));
+// console.log(r);
