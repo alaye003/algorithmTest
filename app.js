@@ -11,10 +11,12 @@ function getResult (e){
   e.preventDefault();
 }
 
+// Clear input field
 function clearField() {
   document.getElementById('string').value = '';
 }
 
+// Main function
 function SwapII(str){
 
   let value = '';
@@ -44,33 +46,32 @@ function SwapII(str){
       // console.log(index)
       if(isNaN(arrayElement[i])){ // character
         result += arrayElement[i];
-      }else{ // is a number or whitespace 
+      }else { // is a number or whitespace 
         if(arrayElement[i] !== '' && arrayElement[i] !== ' '){
+
           // check if the next item is a character          
           if(isNaN(arrayElement[i+1]) && firstValue === 0){ //next index is character
-            console.log((arrayElement[i+1]))
+
             // assign element to first value
-              firstValue = arrayElement[i];
-              // get index of item
-              firstIndex = i;
-              console.log(firstIndex);
-              secondValue = 0; 
+            firstValue = arrayElement[i];
+            
+            // get index of item
+            firstIndex = i;
+            secondValue = 0; 
           }
           if(isNaN(arrayElement[i-1])){
             console.log(isNaN(arrayElement[i-1]))
             secondValue = arrayElement[i];
             secondIndex = i;
             console.log(secondIndex);
-          }
-          
+          }          
             result += arrayElement[i];
         }        
       }
     } // end for loop
       
-      if(secondValue === 0){
+      if(secondValue === 0 || secondValue === undefined){
       }else{
-
         replaced = replaceCharacters(result, firstIndex, secondValue);
         replaced = replaceCharacters(replaced, secondIndex, firstValue);
         result = replaced;
@@ -87,11 +88,9 @@ function SwapII(str){
     result = '';
   });
   return(allOfIT);
-  
 } // end of SwapII
 
-// console.log(SwapII('6hello4 -8World 6sf afa7 5 4'));
-
+// Swap characters
 function swapCase(character){
   if(character === character.toLowerCase()){
     character = character.toUpperCase();
@@ -102,11 +101,7 @@ function swapCase(character){
   }  
 }
 
+// Replace Characters
 function replaceCharacters(str, index, replacement){
   return str.substr(0, index) + replacement + str.substr(index+1);
 }
-
-// let r =(replaceCharacters('H4ell6o', 1, '6'));
-// console.log(r);
-// r = (replaceCharacters(r, 5, '4'));
-// console.log(r);
