@@ -48,7 +48,6 @@ function SwapII(str){
         result += arrayElement[i];
       }else { // is a number or whitespace 
         if(arrayElement[i] !== '' && arrayElement[i] !== ' '){
-
           // check if the next item is a character          
           if(isNaN(arrayElement[i+1]) && firstValue === 0){ //next index is character
 
@@ -59,16 +58,15 @@ function SwapII(str){
             firstIndex = i;
             secondValue = 0; 
           }
+          
           if(isNaN(arrayElement[i-1])){
-            console.log(isNaN(arrayElement[i-1]))
             secondValue = arrayElement[i];
             secondIndex = i;
-            console.log(secondIndex);
           }          
             result += arrayElement[i];
         }        
       }
-    } // end for loop
+    } // for loop
       
       if(secondValue === 0 || secondValue === undefined){
       }else{
